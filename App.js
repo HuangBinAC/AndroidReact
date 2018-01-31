@@ -13,7 +13,8 @@ import {
   Button
 } from 'react-native';
 // Import App Center Crashes at the top of the file.
-import Crashes from 'appcenter-crashes';
+// import Crashes from 'appcenter-crashes';
+import Crashes, { ErrorAttachmentLog } from 'appcenter-crashes';
 import Push from 'appcenter-push';
 import { AppState, Alert } from 'react-native';
 
@@ -49,7 +50,7 @@ export default class App extends Component {
 function onCrash(){
   throw new Error("This is a test JavaScript Crash!"); 
 }
-import Crashes, { ErrorAttachmentLog } from 'appcenter-crashes';
+
 
 Crashes.setListener({
     getErrorAttachments(report) {
@@ -61,9 +62,6 @@ Crashes.setListener({
     // Other callbacks must also be defined at the same time if used.
     // Default values are used if a method with return parameter is not defined.
 });
-
-class MyApp extends Component {
-}
 
 Push.setListener({
   onPushNotificationReceived: function (pushNotification) {
