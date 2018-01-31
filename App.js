@@ -10,13 +10,17 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  AppState, 
+  Alert
 } from 'react-native';
 // Import App Center Crashes at the top of the file.
 // import Crashes from 'appcenter-crashes';
 import Crashes, { ErrorAttachmentLog } from 'appcenter-crashes';
 import Push from 'appcenter-push';
-import { AppState, Alert } from 'react-native';
+// import { AppState, Alert } from 'react-native';
+// import App Center Analytics at the top of the file.
+import Analytics from 'appcenter-analytics';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -51,6 +55,7 @@ function onCrash(){
   throw new Error("This is a test JavaScript Crash!"); 
 }
 
+Analytics.trackEvent('Video clicked', { Category: 'Music', FileName: 'favorite.avi' });
 
 Crashes.setListener({
     getErrorAttachments(report) {
@@ -63,6 +68,8 @@ Crashes.setListener({
     // Default values are used if a method with return parameter is not defined.
 });
 
+class MyApp extends Component {
+}
 Push.setListener({
   onPushNotificationReceived: function (pushNotification) {
     let message = pushNotification.message;
